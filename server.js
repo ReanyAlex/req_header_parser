@@ -25,12 +25,12 @@ app.route('/').get(function(req, res) {
 
 app.route('/api/whoami').get(function(req, res) {
 
-let ipaddress = req.ip,
+let ipaddress = req.ip.match(/(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/),
     language = req.headers['accept-language'].split(",")[0],
     software = req.headers['user-agent'].match(/\(([^)]+)\)/)
 
   res.send({
-    ipaddress: ipaddress,
+    ipaddress: ipaddress[0],
     language: language,
     software: software[1]
   })
